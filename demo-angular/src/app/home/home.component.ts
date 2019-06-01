@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         const mobilePay = new MobilePay();
-        const isInstalled = mobilePay.isMobilePayInstalled("MerchantId");
+        const isInstalled = mobilePay.isMobilePayInstalled("APPDK0000000000");
 
     }
 }

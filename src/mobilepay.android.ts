@@ -10,8 +10,9 @@ export class MobilePay extends MobilePayBase {
     private static MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
 
     createMobilePayInstance(merchantId: string): any {
-        return dk.danskebank.mobilepay.sdk.MobilePay.getInstance(
+        dk.danskebank.mobilepay.sdk.MobilePay.getInstance().init(
             merchantId, dk.danskebank.mobilepay.sdk.Country.DENMARK);
+        return dk.danskebank.mobilepay.sdk.MobilePay.getInstance();
     }
 
     isMobilePayInstalled(merchantId: string): boolean {
@@ -23,9 +24,13 @@ export class MobilePay extends MobilePayBase {
         payment.setProductPrice(price);
         payment.setOrderId(accountId);
 
-        let paymentIntent = this.createMobilePayInstance(merchantId).createPaymentIntent(payment);
+        let mobilePayInstance = this.createMobilePayInstance(merchantId);
+        let paymentIntent = mobilePayInstance.createPaymentIntent(payment);
 
-        let isMobilePayInstalled = this.createMobilePayInstance(merchantId).isMobilePayInstalled(androidApp.context);
+        let isMobilePayInstalled = mobilePayInstance.isMobilePayInstalled(androidApp.context);
+        if(!isMobilePayInstalled) {
+            // throw error
+        }
 
         (androidApp.foregroundActivity || androidApp.startActivity).startActivityForResult(
             paymentIntent,
@@ -49,7 +54,7 @@ export class MobilePay extends MobilePayBase {
             if (eventData.requestCode === MobilePay.MOBILEPAY_PAYMENT_REQUEST_CODE) {
                 androidApp.off(resultEvent, callback);
 
-                this.createMobilePayInstance(merchantId).handleResult(eventData.resultCode, eventData.intent, resultCallback);
+                mobilePayInstance.handleResult(eventData.resultCode, eventData.intent, resultCallback);
             }
         };
         androidApp.on(resultEvent, callback);
