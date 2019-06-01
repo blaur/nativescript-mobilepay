@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import { MobilePay } from 'nativescript-mobilepay';
 @Component({
     selector: "Home",
     moduleId: module.id,
@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // Init your component properties here.
+        const mobilePay = new MobilePay();
+        const isInstalled = mobilePay.isMobilePayInstalled("MerchantId");
+
     }
 }

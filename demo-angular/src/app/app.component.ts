@@ -1,5 +1,3 @@
-import { Mobilepay } from 'nativescript-mobilepay';
-console.log(new Mobilepay().message);
 import { Component } from "@angular/core";
 
 @Component({

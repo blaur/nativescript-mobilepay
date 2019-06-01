@@ -1,30 +1,47 @@
-# Your Plugin Name
+# NativeScript MobilePay
 
 Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
 
-Then describe what's the purpose of your plugin. 
-
-In case you develop UI plugin, this is where you can add some screenshots.
+This plugin is a wrapper for the MobilePay AppSwitch SDK (https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK). It allows your app to utilize and integrate directly with Mobile Pay if installed on the phone.
 
 ## (Optional) Prerequisites / Requirements
 
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+To use the plugin you would have create an account at MobilePay.
 
 ## Installation
 
 Describe your plugin installation steps. Ideally it would be something like:
 
 ```javascript
-tns plugin add <your-plugin-name>
+tns plugin add nativescript-angular
 ```
 
 ## Usage 
 
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
+Simply import the MobilePay class as shown below and start using the features.
 	
 	```javascript
-    Usage code snippets here
-    ```)
+    import { Component, OnInit } from "@angular/core";
+    import { MobilePay } from 'nativescript-mobilepay';
+    @Component({
+        selector: "Home",
+        moduleId: module.id,
+        templateUrl: "./home.component.html"
+    })
+    export class HomeComponent implements OnInit {
+
+        constructor() {
+            // Use the component constructor to inject providers.
+        }
+
+        ngOnInit(): void {
+            const mobilePay = new MobilePay();
+            const isInstalled = mobilePay.isMobilePayInstalled("MerchantId");
+
+        }
+    }
+
+    ```
 
 ## API
 
