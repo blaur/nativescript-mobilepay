@@ -3,5 +3,16 @@
 <plist version="1.0">
 <dict>
 	<!--Describe the permissions, features or other configurations required by your plugin for iOS.-->
+		<key>CFBundleURLTypes</key>
+    	<array>
+    		<dict>
+    			<key>CFBundleURLName</key>
+    			<string>com.github.blaur.nativescriptmobilepay</string>
+    			<key>CFBundleURLSchemes</key>
+    			<array>
+    				<string>nativescriptmobilepay</string>
+    			</array>
+    		</dict>
+    	</array>
 </dict>
 </plist>
