@@ -2,6 +2,7 @@ import { AndroidActivityResultEventData, android as androidApp } from 'tns-core-
 import {
     MobilePayBase
 } from './mobilepay.common';
+const Big = require('big.js');
 
 declare var dk: any;
 
@@ -20,8 +21,11 @@ export class MobilePay extends MobilePayBase {
     }
 
     MakePayment(merchantId: string, price: number, accountId: string): void {
-        let payment = dk.danskebank.mobilepay.sdk.model.Payment();
-        payment.setProductPrice(price);
+
+        let payment = new dk.danskebank.mobilepay.sdk.model.Payment();
+        let bigDecimalPrice = new Big(price).toPrecision(2);
+        let javaBig = new java.math.BigDecimal(bigDecimalPrice);
+        payment.setProductPrice(javaBig);
         payment.setOrderId(accountId);
 
         let mobilePayInstance = this.createMobilePayInstance(merchantId);

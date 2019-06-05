@@ -1,5 +1,6 @@
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 /// <reference path="./typings/MobilePayManager.d.ts" />
+import { AndroidActivityResultEventData, ios as iosApp } from 'tns-core-modules/application';
 
 import { MobilePayBase } from './mobilepay.common';
 
@@ -16,6 +17,7 @@ export class MobilePay extends MobilePayBase {
             merchantId, 'nativescriptmobilepay',
             MobilePayCountry.MobilePayCountry_Denmark
         );
+        this.mobilePayManager.setTimeoutSeconds(90);
 
         return this.mobilePayManager;
     }
@@ -25,7 +27,43 @@ export class MobilePay extends MobilePayBase {
     }
 
     MakePayment(merchantId: string, price: number, accountId: string): void {
+        let mobilePayment = this.mobilePayManager.initWithOrderId(accountId, price);
 
+        if(mobilePayment && (mobilePayment.orderId.length > 0) && (mobilePayment.productPrice > 0)) {
+            //this.mobilePayManager.beginMobilePaymentWithPayment(mobilePayment,);
+
+            //iosApp.delegate =
+            /*const callback = (eventData: AndroidActivityResultEventData) => {
+                if (eventData.requestCode === MobilePay.MOBILEPAY_PAYMENT_REQUEST_CODE) {
+                    androidApp.off(resultEvent, callback);
+
+                    mobilePayInstance.handleResult(eventData.resultCode, eventData.intent, resultCallback);
+                }
+            };*/
+
+        }
     }
 
+}
+
+class UrlAppDelegate {
+    manager: MobilePayManager;
+
+    constructor(manager: MobilePayManager) {
+        this.manager = manager;
+    }
+
+    openURL(url: any): boolean {
+        this.handleMobilePayPaymentWithUrl(url);
+        return true;
+    }
+
+    handleOpenURL(url: any): boolean {
+        this.handleMobilePayPaymentWithUrl(url);
+        return true;
+    }
+
+    handleMobilePayPaymentWithUrl(url: any): void {
+        this.manager.handleMobilePayPaymentWithUrl(url);
+    }
 }

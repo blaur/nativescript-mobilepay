@@ -12,8 +12,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+    }
+
+    pay() {
         const mobilePay = new MobilePay();
         const isInstalled = mobilePay.isMobilePayInstalled("APPDK0000000000");
         console.log("Mobile Pay installed? " + isInstalled);
+
+        if(isInstalled) {
+            mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")
+        }
     }
 }
