@@ -40,18 +40,7 @@ export class MobilePay extends MobilePayBase {
             paymentIntent,
             MobilePay.MOBILEPAY_PAYMENT_REQUEST_CODE);
 
-        const resultCallback = dk.danskebank.mobilepay.sdk.ResultCallback.extend({
-            onSuccess: successResult => {
-                console.log("We had a successful payment");
-            },
-            onFailure: failureResult => {
-                console.log("Payment failed");
-            },
-            onCancel: () => {
-                console.log("Payment was cancelled");
-            }
-        });
-
+        const resultCallback = new MyCallback();
         const resultEvent = "activityResult";
 
         const callback = (eventData: AndroidActivityResultEventData) => {
@@ -63,5 +52,18 @@ export class MobilePay extends MobilePayBase {
         };
         androidApp.on(resultEvent, callback);
     }
+}
 
+class MyCallback extends dk.danskebank.mobilepay.sdk.ResultCallback {
+    onSuccess(successResult: any) {
+        console.log("We had a successful payment");
+    }
+
+    onFailure(successResult: any) {
+        console.log("We had a successful payment");
+    }
+
+    onCancel() {
+        console.log("Payment was cancelled");
+    }
 }
