@@ -16,6 +16,8 @@ declare enum MobilePayCountry {
 declare class MobilePayManager extends NSObject {
     static alloc(): MobilePayManager;
 
+    mobilePayAppStoreLinkDK: any;
+
     isMobilePayInstalled(country: MobilePayCountry): boolean;
 
     setupWithMerchantId(setupWithMerchantId: string, merchantUrlScheme: string, country: MobilePayCountry);
@@ -23,6 +25,8 @@ declare class MobilePayManager extends NSObject {
     initWithOrderId(orderId: string, price: number): MobilePayPayment;
 
     beginMobilePaymentWithPayment(payment: MobilePayPayment, error: any);
+
+    handleMobilePayCallbacksWithUrl(url: any, success: any, cancel: any);
 
     handleMobilePayPaymentWithUrl(url: string): any;
 

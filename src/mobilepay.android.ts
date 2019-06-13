@@ -33,7 +33,7 @@ export class MobilePay extends MobilePayBase {
 
         let isMobilePayInstalled = mobilePayInstance.isMobilePayInstalled(androidApp.context);
         if(!isMobilePayInstalled) {
-            // throw error
+            return;
         }
 
         (androidApp.foregroundActivity || androidApp.startActivity).startActivityForResult(

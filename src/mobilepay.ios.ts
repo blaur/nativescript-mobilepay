@@ -31,17 +31,12 @@ export class MobilePay extends MobilePayBase {
         let mobilePayment = this.mobilePayManager.initWithOrderId(accountId, price);
 
         if(mobilePayment && (mobilePayment.orderId.length > 0) && (mobilePayment.productPrice > 0)) {
-            //this.mobilePayManager.beginMobilePaymentWithPayment(mobilePayment,);
 
-            //iosApp.delegate =
-            /*const callback = (eventData: AndroidActivityResultEventData) => {
-                if (eventData.requestCode === MobilePay.MOBILEPAY_PAYMENT_REQUEST_CODE) {
-                    androidApp.off(resultEvent, callback);
+            this.mobilePayManager.handleMobilePayCallbacksWithUrl(
+                this.mobilePayManager.mobilePayAppStoreLinkDK,
+                this.onPaymentSuccess, this.onPaymentFailure);
 
-                    mobilePayInstance.handleResult(eventData.resultCode, eventData.intent, resultCallback);
-                }
-            };*/
-
+            this.mobilePayManager.beginMobilePaymentWithPayment(mobilePayment, (error) => this.onPaymentFailure(error));
         }
     }
 
@@ -54,26 +49,4 @@ export class MobilePay extends MobilePayBase {
     onPaymentCancel(): void {
     }
 
-}
-
-class UrlAppDelegate {
-    manager: MobilePayManager;
-
-    constructor(manager: MobilePayManager) {
-        this.manager = manager;
-    }
-
-    openURL(url: any): boolean {
-        this.handleMobilePayPaymentWithUrl(url);
-        return true;
-    }
-
-    handleOpenURL(url: any): boolean {
-        this.handleMobilePayPaymentWithUrl(url);
-        return true;
-    }
-
-    handleMobilePayPaymentWithUrl(url: any): void {
-        this.manager.handleMobilePayPaymentWithUrl(url);
-    }
 }
