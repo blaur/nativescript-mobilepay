@@ -6,6 +6,7 @@ import { MobilePayBase } from './mobilepay.common';
 
 export class MobilePay extends MobilePayBase {
     public mobilePayManager: MobilePayManager;
+    public paymentCallback: any;
     private static MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
 
     createMobilePayInstance(merchantId: string): any {
@@ -42,6 +43,15 @@ export class MobilePay extends MobilePayBase {
             };*/
 
         }
+    }
+
+    onPaymentSuccess(successResult: any): void {
+    }
+
+    onPaymentFailure(failureResult: any): void {
+    }
+
+    onPaymentCancel(): void {
     }
 
 }

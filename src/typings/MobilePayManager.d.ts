@@ -9,7 +9,7 @@ declare class MobilePaySuccessfulPayment extends NSObject {
     amountWithdrawnFromCard: string;
 }
 
-enum MobilePayCountry {
+declare enum MobilePayCountry {
     MobilePayCountry_Denmark
 }
 

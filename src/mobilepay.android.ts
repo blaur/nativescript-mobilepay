@@ -7,8 +7,8 @@ const Big = require('big.js');
 declare var dk: any;
 
 export class MobilePay extends MobilePayBase {
-
     private static MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
+    public paymentCallback: any;
 
     createMobilePayInstance(merchantId: string): any {
         dk.danskebank.mobilepay.sdk.MobilePay.getInstance().init(
@@ -40,7 +40,7 @@ export class MobilePay extends MobilePayBase {
             paymentIntent,
             MobilePay.MOBILEPAY_PAYMENT_REQUEST_CODE);
 
-        const resultCallback = new MyCallback();
+        const resultCallback = new PaymentCallback(this);
         const resultEvent = "activityResult";
 
         const callback = (eventData: AndroidActivityResultEventData) => {
@@ -52,18 +52,39 @@ export class MobilePay extends MobilePayBase {
         };
         androidApp.on(resultEvent, callback);
     }
-}
 
-class MyCallback extends dk.danskebank.mobilepay.sdk.ResultCallback {
-    onSuccess(successResult: any) {
-        console.log("We had a successful payment");
+    onPaymentSuccess(successResult: any): void {
     }
 
-    onFailure(successResult: any) {
+    onPaymentFailure(failureResult: any): void {
+    }
+
+    onPaymentCancel(): void {
+    }
+}
+
+class PaymentCallback extends dk.danskebank.mobilepay.sdk.ResultCallback {
+
+    private _mobilePay: MobilePay;
+
+    constructor(mobilePay: MobilePay) {
+        super();
+        this._mobilePay = mobilePay;
+        return global.__native(this);
+    }
+
+    onSuccess(successResult: any) {
         console.log("We had a successful payment");
+        this._mobilePay.onPaymentSuccess(successResult);
+    }
+
+    onFailure(failureResult: any) {
+        console.log("We had a successful payment");
+        this._mobilePay.onPaymentFailure(failureResult);
     }
 
     onCancel() {
         console.log("Payment was cancelled");
+        this._mobilePay.onPaymentCancel();
     }
 }
