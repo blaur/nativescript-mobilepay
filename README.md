@@ -1,4 +1,4 @@
-# NativeScript MobilePay 1.0.0
+# NativeScript MobilePay 1.0.1
 
 Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
 
