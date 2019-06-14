@@ -13,7 +13,7 @@ To use the plugin you would have create an account at MobilePay.
 Describe your plugin installation steps. Ideally it would be something like:
 
 ```javascript
-tns plugin add nativescript-angular
+tns plugin add nativescript-mobilepay
 ```
 
 ## Usage 
@@ -36,7 +36,17 @@ Simply import the MobilePay class as shown below and start using the features.
 
         ngOnInit(): void {
             const mobilePay = new MobilePay();
-            const isInstalled = mobilePay.isMobilePayInstalled("MerchantId");
+            const isInstalled = mobilePay.isMobilePayInstalled("APPDK0000000000");
+            console.log("Mobile Pay installed? " + isInstalled + " Android: " + isAndroid + " iOS: " + isIOS);
+
+            // You can choose to provide a result callback like this
+            mobilePay.onPaymentSuccess = (result) => (console.log("WE MADE A SUCCESSFUL RESULT"));
+            mobilePay.onPaymentFailure = (failure) => (console.log("WE MADE A FAILURE LOL"));
+            mobilePay.onPaymentCancel = () => (console.log("WE MADE A SUCCESSFUL CANCEL"));
+
+            if(isInstalled) {
+                mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")
+            }
 
         }
     }
@@ -45,12 +55,31 @@ Simply import the MobilePay class as shown below and start using the features.
 
 ## API
 
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
-    
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
+Properties of the plugin
+
+### createMobilePayInstance
+
+Creates a mobile pay instance. Please see demo example.
+
+### isMobilePayInstalled
+
+Checks whether or not mobile pay is installed on device.
+
+### MakePayment
+
+Makes a payment request to mobile pay.
+
+### onPaymentSuccess
+
+Callback function if a payment was successful.
+
+### onPaymentFailure
+
+Callback if payment failed.
+
+### onPaymentCancel()
+
+Callback if payment was cancelled.
     
 ## License
 
