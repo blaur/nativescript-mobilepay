@@ -1,7 +1,7 @@
 {
 	"name": "nativescript-mobilepay",
 	"version": "1.0.0",
-	"description": "Your awesome NativeScript plugin.",
+	"description": "A plugin that helps you interact with Mobile Pay directly from your NativeScript app.",
 	"main": "mobilepay",
 	"typings": "index.d.ts",
 	"nativescript": {
@@ -39,8 +39,7 @@
 		"iOS"
 	],
 	"author": {
-		"name": "Your Name",
-		"email": "youremail@yourdomain.com"
+		"name": "Brian Bak Laursen"
 	},
 	"bugs": {
 		"url": "https://github.com/blaur/nativescript-mobilepay/issues"
