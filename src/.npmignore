@@ -3,7 +3,7 @@
 !*.d.ts
 tsconfig.json
 scripts/*
-platforms/android/*
+!platforms/android/libs/*
 !platforms/android/include.gradle
 !platforms/android/*.aar
 !platforms/android/*.jar
