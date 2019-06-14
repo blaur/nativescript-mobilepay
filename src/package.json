@@ -39,7 +39,8 @@
 		"iOS"
 	],
 	"author": {
-		"name": "Brian Bak Laursen"
+		"name": "Brian Bak Laursen",
+		"email": "youremail@yourdomain.com"
 	},
 	"bugs": {
 		"url": "https://github.com/blaur/nativescript-mobilepay/issues"
