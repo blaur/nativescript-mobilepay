@@ -1,6 +1,6 @@
-# NativeScript MobilePay 1.0.1
+# NativeScript MobilePay 1.0.2
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+[![npm version](https://badge.fury.io/js/nativescript-mobilepay.svg)](https://badge.fury.io/js/nativescript-mobilepay)
 
 This plugin is a wrapper for the MobilePay AppSwitch SDK (https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK). It allows your app to utilize and integrate directly with Mobile Pay if installed on the phone.
 
