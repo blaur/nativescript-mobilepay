@@ -1,5 +1,1 @@
-platform :ios, '7.0'
-
-target 'Fruitshop' do
 pod 'MobilePay-AppSwitch-SDK'
-end
