@@ -3,7 +3,7 @@ declare class MobilePayPayment extends NSObject {
     orderId: string;
 }
 
-declare class MobilePaySuccessfulPayment extends NSObject {
+declare class MobilePaySuccessfulPayment {
     orderId: string;
     transactionId: string;
     amountWithdrawnFromCard: string;

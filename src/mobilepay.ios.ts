@@ -1,6 +1,5 @@
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
-/// <reference path="./typings/MobilePayManager.d.ts" />
-import { AndroidActivityResultEventData, ios as iosApp } from 'tns-core-modules/application';
+/// <reference path="./platforms/ios/typings/MobilePayManager.d.ts" />
 
 import { MobilePayBase } from './mobilepay.common';
 
@@ -10,6 +9,7 @@ export class MobilePay extends MobilePayBase {
     private static MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
 
     createMobilePayInstance(merchantId: string): any {
+        //console.log(MobilePayCountry.MobilePayCountry_Denmark);
         this.mobilePayManager = MobilePayManager.alloc().setupWithMerchantId(
             merchantId, 'nativescriptmobilepay',
             MobilePayCountry.MobilePayCountry_Denmark

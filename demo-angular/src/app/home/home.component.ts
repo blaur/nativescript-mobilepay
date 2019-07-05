@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
     pay() {
         const mobilePay = new MobilePay();
+        mobilePay.createMobilePayInstance("APPDK0000000000");
         const isInstalled = mobilePay.isMobilePayInstalled("APPDK0000000000");
         console.log("Mobile Pay installed? " + isInstalled + " Android: " + isAndroid + " iOS: " + isIOS);
 
