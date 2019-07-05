@@ -10,10 +10,6 @@ export class MobilePay extends MobilePayBase {
     private static MOBILEPAY_PAYMENT_REQUEST_CODE = 1337;
 
     createMobilePayInstance(merchantId: string): any {
-        if(!this.isMobilePayInstalled(merchantId)) {
-            return null;
-        }
-
         this.mobilePayManager = MobilePayManager.alloc().setupWithMerchantId(
             merchantId, 'nativescriptmobilepay',
             MobilePayCountry.MobilePayCountry_Denmark

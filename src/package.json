@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-mobilepay",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "A plugin that helps you interact with Mobile Pay directly from your NativeScript app.",
 	"main": "mobilepay",
 	"typings": "index.d.ts",
