@@ -1,5 +1,5 @@
 module MobilePayManager {
-  umbrella header "../Pods/MobilePay-AppSwitch-SDK/sdk/iOS/1.8.1/MobilePayManager.h"
+  umbrella "../Pods/MobilePay-AppSwitch-SDK/sdk/iOS/1.8.1/MobilePayManager"
   export *
   module * { export * }
 }

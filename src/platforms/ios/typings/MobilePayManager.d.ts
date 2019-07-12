@@ -1,6 +1,10 @@
 declare class MobilePayPayment extends NSObject {
     productPrice: number;
     orderId: string;
+
+    static alloc(): MobilePayPayment;
+
+    initWithOrderId(orderId: string, price: number): MobilePayPayment;
 }
 
 declare class MobilePaySuccessfulPayment {
@@ -10,23 +14,22 @@ declare class MobilePaySuccessfulPayment {
 }
 
 declare enum MobilePayCountry {
-    MobilePayCountry_Denmark
+    MobilePayCountry_Denmark = 0
 }
 
 declare class MobilePayManager extends NSObject {
+    static sharedInstance(): MobilePayManager;
     static alloc(): MobilePayManager;
-
+    
     mobilePayAppStoreLinkDK: any;
 
-    isMobilePayInstalled(country: MobilePayCountry): boolean;
+    isMobilePayInstalled: boolean;
 
-    setupWithMerchantId(setupWithMerchantId: string, merchantUrlScheme: string, country: MobilePayCountry);
+    setupWithMerchantIdMerchantUrlSchemeCountry(setupWithMerchantId: string, merchantUrlScheme: string, country: MobilePayCountry);
 
-    initWithOrderId(orderId: string, price: number): MobilePayPayment;
+    beginMobilePaymentWithOrderIdProductPriceReceiptMessageError(orderId: string, price: number, receiptMessage: string, error: any);
 
-    beginMobilePaymentWithPayment(payment: MobilePayPayment, error: any);
-
-    handleMobilePayCallbacksWithUrl(url: any, success: any, cancel: any);
+    handleMobilePayCallbacksWithUrlSuccessErrorCancel(url: any, success: any, error: any, cancel: any);
 
     handleMobilePayPaymentWithUrl(url: string): any;
 
