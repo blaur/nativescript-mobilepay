@@ -1,4 +1,4 @@
-# NativeScript MobilePay 1.0.5
+# NativeScript MobilePay 1.0.6
 
 [![npm version](https://badge.fury.io/js/nativescript-mobilepay.svg)](https://badge.fury.io/js/nativescript-mobilepay)
 
@@ -13,45 +13,73 @@ To use the plugin you would have create an account at MobilePay.
 Describe your plugin installation steps. Ideally it would be something like:
 
 ```javascript
-tns plugin add nativescript-mobilepay
+    tns plugin add nativescript-mobilepay
 ```
 
 ## Usage 
 
+First add the following lines to main.ts:
+```javascript
+    import { platformNativeScriptDynamic } from "nativescript-angular/platform";
+
+    import { AppModule } from "./app/app.module";
+    import { MobilePay } from "nativescript-mobilepay";
+
+    // Do this for nativescript-mobilepay
+    var mobilePay = new MobilePay();
+    mobilePay.addDelegate();
+
+    platformNativeScriptDynamic().bootstrapModule(AppModule);
+
+```
+
 Simply import the MobilePay class as shown below and start using the features.
 	
-	```javascript
+```javascript
     import { Component, OnInit } from "@angular/core";
     import { MobilePay } from 'nativescript-mobilepay';
-    @Component({
-        selector: "Home",
-        moduleId: module.id,
-        templateUrl: "./home.component.html"
+    import { isAndroid, isIOS } from 'tns-core-modules/platform';
+
+    declare var dk: any;
+
+   @Component({
+    selector: "Home",
+    moduleId: module.id,
+    templateUrl: "./home.component.html"
     })
     export class HomeComponent implements OnInit {
+
+        private mobilePay: MobilePay;
 
         constructor() {
             // Use the component constructor to inject providers.
         }
 
         ngOnInit(): void {
-            const mobilePay = new MobilePay();
-            const isInstalled = mobilePay.isMobilePayInstalled("APPDK0000000000");
+            // Create an instance on init. Important!
+            this.mobilePay = new MobilePay();
+            this.mobilePay.createMobilePayInstance("APPDK0000000000");
+        }
+
+        pay() {
+            const isInstalled = this.mobilePay.isMobilePayInstalled("APPDK0000000000");
             console.log("Mobile Pay installed? " + isInstalled + " Android: " + isAndroid + " iOS: " + isIOS);
 
             // You can choose to provide a result callback like this
-            mobilePay.onPaymentSuccess = (result) => (console.log("WE MADE A SUCCESSFUL RESULT"));
-            mobilePay.onPaymentFailure = (failure) => (console.log("WE MADE A FAILURE LOL"));
-            mobilePay.onPaymentCancel = () => (console.log("WE MADE A SUCCESSFUL CANCEL"));
+            MobilePay.onPaymentSuccess = (result) => (console.log("WE MADE A SUCCESSFUL RESULT"));
+            MobilePay.onPaymentFailure = (failure) => (console.log("WE MADE A FAILURE LOL"));
+            MobilePay.onPaymentCancel = () => (console.log("WE MADE A SUCCESSFUL CANCEL"));
 
             if(isInstalled) {
-                mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")
+                this.mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")
             }
-
         }
+
+
     }
 
-    ```
+
+```
 
 ## API
 

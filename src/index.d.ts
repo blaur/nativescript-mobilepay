@@ -7,9 +7,11 @@ export declare class MobilePay extends MobilePayBase {
 
     MakePayment(merchantId: string, price: number, accountId: string): any;
 
-    onPaymentSuccess(successResult: any): void;
+    addDelegate(): void;
 
-    onPaymentFailure(successResult: any): void;
+    static onPaymentSuccess(successResult: any): void;
 
-    onPaymentCancel(): void;
+    static onPaymentFailure(successResult: any): void;
+
+    static onPaymentCancel(): void;
 }

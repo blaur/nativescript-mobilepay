@@ -10,14 +10,6 @@ export class MobilePay extends MobilePayBase {
     createMobilePayInstance(merchantId: string): any {
 
         // Callbacks for mobile pay
-        const handleCallbacks = (url: NSURL): boolean => {
-            console.log("We are handling a callback");
-            console.dir(url);
-            MobilePayManager.sharedInstance().handleMobilePayCallbacksWithUrlSuccessErrorCancel(
-                url, this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
-
-            return true;
-        };
 
         // Create Delegate and fill in all methods
        /* const appDelegate = new CustomAppDelegate();
@@ -35,7 +27,6 @@ export class MobilePay extends MobilePayBase {
                 NSURL.URLWithString(appURL.toString()), this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
           });*/
 
-          this.addDelegateMethods();
   //        console.log("we wish to log app delegate:");
     //      console.dir(iosApp.delegate !== undefined);
       //    console.dir(iosApp.delegate.prototype);
@@ -63,19 +54,12 @@ export class MobilePay extends MobilePayBase {
                 accountId,
                 price,
                 "Tillykke, du har betalt!",
-                (error: any) => this.onPaymentFailure(error));
+                (error: any) => MobilePay.onPaymentFailure(error));
         }
     }
 
-    onPaymentSuccess(successResult: any): void {
-        console.log("WE DID PAY???");
-    }
-
-    onPaymentFailure(failureResult: any): void {
-    }
-
-    onPaymentCancel(): void {
-        console.log("WE DID CANCEL???");
+    public addDelegate(): void {
+        this.addDelegateMethods();
     }
 
     private getAppInfo(key: string) {
@@ -108,28 +92,28 @@ export class MobilePay extends MobilePayBase {
           appDelegate.prototype.applicationHandleOpenURL = (application: UIApplication, url: NSURL): boolean => {
             console.log("we are here or what?");
             MobilePayManager.sharedInstance().handleMobilePayCallbacksWithUrlSuccessErrorCancel(
-                url, this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
+                url, MobilePay.onPaymentSuccess, MobilePay.onPaymentFailure, MobilePay.onPaymentCancel);
             return true;
           };
 
           appDelegate.prototype.applicationOpenURLOptions = (app: UIApplication, url: NSURL, options: NSDictionary<string, any>): boolean => {
             console.log("we are here or what?");
             MobilePayManager.sharedInstance().handleMobilePayCallbacksWithUrlSuccessErrorCancel(
-                url, this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
+                url, MobilePay.onPaymentSuccess, MobilePay.onPaymentFailure, MobilePay.onPaymentCancel);
             return true;
           };
 
           appDelegate.prototype.openURL = (url: NSURL): boolean => {
             console.log("we are here or what?");
             MobilePayManager.sharedInstance().handleMobilePayCallbacksWithUrlSuccessErrorCancel(
-                url, this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
+                url, MobilePay.onPaymentSuccess, MobilePay.onPaymentFailure, MobilePay.onPaymentCancel);
             return true;
           };
 
           appDelegate.prototype.applicationOpenURLSourceApplicationAnnotation = (application: UIApplication, url: NSURL, sourceApplication: string, annotation: any): boolean => {
             console.log("we are here or what?");
             MobilePayManager.sharedInstance().handleMobilePayCallbacksWithUrlSuccessErrorCancel(
-                url, this.onPaymentSuccess, this.onPaymentFailure, this.onPaymentCancel);
+                url, MobilePay.onPaymentSuccess, MobilePay.onPaymentFailure, MobilePay.onPaymentCancel);
             return true;
           };
     }

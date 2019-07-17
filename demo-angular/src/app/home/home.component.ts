@@ -28,9 +28,9 @@ export class HomeComponent implements OnInit {
         console.log("Mobile Pay installed? " + isInstalled + " Android: " + isAndroid + " iOS: " + isIOS);
 
         // You can choose to provide a result callback like this
-        this.mobilePay.onPaymentSuccess = (result) => (console.log("WE MADE A SUCCESSFUL RESULT"));
-        this.mobilePay.onPaymentFailure = (failure) => (console.log("WE MADE A FAILURE LOL"));
-        this.mobilePay.onPaymentCancel = () => (console.log("WE MADE A SUCCESSFUL CANCEL"));
+        MobilePay.onPaymentSuccess = (result) => (console.log("WE MADE A SUCCESSFUL RESULT"));
+        MobilePay.onPaymentFailure = (failure) => (console.log("WE MADE A FAILURE LOL"));
+        MobilePay.onPaymentCancel = () => (console.log("WE MADE A SUCCESSFUL CANCEL"));
 
         if(isInstalled) {
             this.mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")

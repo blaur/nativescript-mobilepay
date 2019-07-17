@@ -2,5 +2,11 @@
 import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app/app.module";
+import { MobilePay } from "nativescript-mobilepay";
+
+// Do this for nativescript-mobilepay
+var mobilePay = new MobilePay();
+mobilePay.addDelegate();
+
 
 platformNativeScriptDynamic().bootstrapModule(AppModule);
