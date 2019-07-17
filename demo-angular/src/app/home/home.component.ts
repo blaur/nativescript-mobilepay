@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MobilePay } from 'nativescript-mobilepay';
-import {isAndroid, isIOS} from 'tns-core-modules/platform';
+import { isAndroid, isIOS } from 'tns-core-modules/platform';
 
 declare var dk: any;
 
@@ -36,5 +36,7 @@ export class HomeComponent implements OnInit {
             this.mobilePay.MakePayment("APPDK0000000000", 1.0, "86715c57-8840-4a6f-af5f-07ee89107ece")
         }
     }
+
+
 }
 
