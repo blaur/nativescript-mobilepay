@@ -6,10 +6,6 @@ export abstract class MobilePayBase {
     public abstract MakePayment(merchantId: string, price: number, accountId: string): void;
     public abstract addDelegate(): void;
 
-   // public abstract onPaymentSuccess(successResult: any): void;
-   // public abstract onPaymentFailure(successResult: any): void;
-   // public abstract onPaymentCancel(): void;
-
     public static onPaymentSuccess(successResult: any): void {
         console.log("WE DID PAY???");
     }
