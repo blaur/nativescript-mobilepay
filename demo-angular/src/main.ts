@@ -8,5 +8,4 @@ import { MobilePay } from "nativescript-mobilepay";
 var mobilePay = new MobilePay();
 mobilePay.addDelegate();
 
-
 platformNativeScriptDynamic().bootstrapModule(AppModule);

@@ -1,4 +1,4 @@
-# NativeScript MobilePay 1.0.6
+# NativeScript MobilePay 1.0.7
 
 [![npm version](https://badge.fury.io/js/nativescript-mobilepay.svg)](https://badge.fury.io/js/nativescript-mobilepay)
 

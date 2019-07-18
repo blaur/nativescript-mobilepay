@@ -280,7 +280,7 @@ module.exports = env => {
         }));
     }
 
-    if (hmr) {
+    if (false) {
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
     }
 
