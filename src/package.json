@@ -68,8 +68,6 @@
 		"typescript": "~3.4.5"
 	},
 	"dependencies": {
-		"@types/big.js": "^4.0.5",
-		"big.js": "^5.2.2",
 		"nativescript-hook": "^0.2.5"
 	},
 	"bootstrapper": "nativescript-plugin-seed"
