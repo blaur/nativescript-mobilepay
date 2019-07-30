@@ -59,7 +59,6 @@
 	"homepage": "https://github.com/blaur/nativescript-mobilepay",
 	"readmeFilename": "README.md",
 	"devDependencies": {
-		"@types/big.js": "^4.0.5",
 		"prompt": "^1.0.0",
 		"rimraf": "^2.6.3",
 		"semver": "^5.6.0",
