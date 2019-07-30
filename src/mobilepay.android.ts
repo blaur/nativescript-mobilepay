@@ -21,7 +21,6 @@ export class MobilePay extends MobilePayBase {
     }
 
     MakePayment(merchantId: string, price: number, accountId: string): void {
-
         let payment = new dk.danskebank.mobilepay.sdk.model.Payment();
         let bigDecimalPrice = new Big(price).toPrecision(2);
         let javaBig = new java.math.BigDecimal(bigDecimalPrice);
